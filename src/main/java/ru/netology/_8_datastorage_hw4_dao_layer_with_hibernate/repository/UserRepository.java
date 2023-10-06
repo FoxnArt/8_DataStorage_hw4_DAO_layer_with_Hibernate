@@ -13,9 +13,9 @@ import java.util.List;
 public class UserRepository {
 
     @PersistenceContext
-    private static EntityManager entityManager;
+    private EntityManager entityManager;
 
-    public static List<Person> getPersonsByCity(String city) {
+    public List<Person> getPersonsByCity(String city) {
         List<Person> personList = entityManager.createNativeQuery("SELECT * FROM persons", Person.class).getResultList();
         return personList.stream().filter(x -> city.equals(x.getCity_of_living())).toList();
     }
